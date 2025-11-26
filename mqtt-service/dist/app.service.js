@@ -9,11 +9,41 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 let AppService = class AppService {
-    processTemperature(data) {
-        console.log("Saving Temperature", data);
+    processVfdTemperature(data) {
+        console.log("Processing VFD Temperature:", data);
     }
-    processVoltage(data) {
-        console.log("Saving Temperature", data);
+    processInputVoltage(data) {
+        console.log("Processing Input Voltage:", data);
+    }
+    processInputCurrent(data) {
+        console.log("Processing Input Current:", data);
+    }
+    processMotorTemperature(data) {
+        console.log("Processing Motor Temperature:", data);
+    }
+    processPhaseOneVoltage(data) {
+        console.log("Processing Phase 1 Voltage:", data);
+    }
+    processPhaseOneCurrent(data) {
+        console.log("Processing Phase 1 Current:", data);
+    }
+    processPhaseTwoVoltage(data) {
+        console.log("Processing Phase 2 Voltage:", data);
+    }
+    processPhaseTwoCurrent(data) {
+        console.log("Processing Phase 2 Current:", data);
+    }
+    processPhaseThreeVoltage(data) {
+        console.log("Processing Phase 3 Voltage:", data);
+    }
+    processPhaseThreeCurrent(data) {
+        console.log("Processing Phase 3 Current:", data);
+    }
+    processMotorTorque(data) {
+        console.log("Processing Motor Torque:", data);
+    }
+    processMotorSpeed(data) {
+        console.log("Processing Motor Speed:", data);
     }
 };
 exports.AppService = AppService;
