@@ -21,30 +21,140 @@ let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
-    handleTemperature(payload) {
-        console.log("Mosfet's Temperature:", payload);
-        this.appService.processTemperature(payload);
+    handleVfdTemperature(payload) {
+        console.log("VFD Temperature:", payload);
+        this.appService.processVfdTemperature(payload);
     }
-    handleVoltage(payload) {
+    handleInputVoltage(payload) {
+        console.log("Input Voltage:", payload);
+        this.appService.processInputVoltage(payload);
+    }
+    handleInputCurrent(payload) {
+        console.log("Input Current:", payload);
+        this.appService.processInputCurrent(payload);
+    }
+    handleMotorTemperature(payload) {
+        console.log("Motor Temperature:", payload);
+        this.appService.processMotorTemperature(payload);
+    }
+    handlePhaseOneVoltage(payload) {
         console.log("Phase 1 Voltage:", payload);
-        this.appService.processVoltage(payload);
+        this.appService.processPhaseOneVoltage(payload);
+    }
+    handlePhaseOneCurrent(payload) {
+        console.log("Phase 1 Current:", payload);
+        this.appService.processPhaseOneCurrent(payload);
+    }
+    handlePhaseTwoVoltage(payload) {
+        console.log("Phase 2 Voltage:", payload);
+        this.appService.processPhaseTwoVoltage(payload);
+    }
+    handlePhaseTwoCurrent(payload) {
+        console.log("Phase 2 Current:", payload);
+        this.appService.processPhaseTwoCurrent(payload);
+    }
+    handlePhaseThreeVoltage(payload) {
+        console.log("Phase 3 Voltage:", payload);
+        this.appService.processPhaseThreeVoltage(payload);
+    }
+    handlePhaseThreeCurrent(payload) {
+        console.log("Phase 3 Current:", payload);
+        this.appService.processPhaseThreeCurrent(payload);
+    }
+    handleMotorTorque(payload) {
+        console.log("Motor Torque:", payload);
+        this.appService.processMotorTorque(payload);
+    }
+    handleMotorSpeed(payload) {
+        console.log("Motor Speed:", payload);
+        this.appService.processMotorSpeed(payload);
     }
 };
 exports.AppController = AppController;
 __decorate([
-    (0, microservices_1.MessagePattern)('sensors/temperature'),
+    (0, microservices_1.MessagePattern)('sensors/vfdTemperature'),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], AppController.prototype, "handleTemperature", null);
+], AppController.prototype, "handleVfdTemperature", null);
 __decorate([
-    (0, microservices_1.MessagePattern)("sensors/voltage"),
+    (0, microservices_1.MessagePattern)('sensors/inputVoltage'),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], AppController.prototype, "handleVoltage", null);
+], AppController.prototype, "handleInputVoltage", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/inputCurrent'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handleInputCurrent", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/motorTemperature'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handleMotorTemperature", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/phase1/voltage'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handlePhaseOneVoltage", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/phase1/current'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handlePhaseOneCurrent", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/phase2/voltage'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handlePhaseTwoVoltage", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/phase2/current'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handlePhaseTwoCurrent", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/phase3/voltage'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handlePhaseThreeVoltage", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/phase3/current'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handlePhaseThreeCurrent", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/motor/torque'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handleMotorTorque", null);
+__decorate([
+    (0, microservices_1.MessagePattern)('sensors/motor/speed'),
+    __param(0, (0, microservices_1.Payload)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "handleMotorSpeed", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
