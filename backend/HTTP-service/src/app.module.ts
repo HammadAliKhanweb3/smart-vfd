@@ -1,20 +1,27 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 
+import { Module, ValidationPipe } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { join } from 'path';
+import { APP_PIPE } from '@nestjs/core';
 
 @Module({
-  imports: [
-      ClientsModule.register([
-      {
-        name: 'MQTT_CLIENT',
-        transport: Transport.MQTT,
-        options: { url: 'mqtt://localhost:1883' },
-      },
-    ]),
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+imports:[
+  GraphQLModule.forRoot<ApolloDriverConfig>({
+    driver:ApolloDriver,
+    autoSchemaFile:join(process.cwd(),'src/schema.gql'),
+    sortSchema:true,
+     subscriptions: {
+    'graphql-ws': true,
+  },
+    playground:true
+  }),
+],
+providers:[
+  {provide:APP_PIPE,
+  useClass:ValidationPipe}
+]
 })
-export class AppModule {}
+
+
+export class AppModule{}
