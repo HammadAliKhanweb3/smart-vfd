@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { APP_PIPE } from '@nestjs/core';
+import { MqttModule } from './mqtt/mqtt.module';
 
 @Module({
 imports:[
@@ -16,6 +17,7 @@ imports:[
   },
     playground:true
   }),
+  MqttModule,
 ],
 providers:[
   {provide:APP_PIPE,

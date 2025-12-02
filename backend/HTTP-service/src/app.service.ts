@@ -18,7 +18,7 @@ export class UsersService {
   async users(params: {
     skip?: number;
     take?: number;
-    cursor?: Prisma.SensorsDataWhereInput;
+    cursor?: Prisma.SensorsDataWhereUniqueInput;
     where?: Prisma.SensorsDataWhereInput;
     orderBy?: Prisma.SensorsDataOrderByWithRelationInput;
   }): Promise<SensorsData[]> {
