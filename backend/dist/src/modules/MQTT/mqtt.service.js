@@ -17,27 +17,54 @@ const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 let MqttService = class MqttService {
     kafkaClient;
-    constructor(kafkaClient) {
+    client;
+    mqttClient;
+    constructor(kafkaClient, client) {
         this.kafkaClient = kafkaClient;
+        this.client = client;
+        this.mqttClient = client;
+        console.log('Kafka producer initialized for MQTT service');
     }
     async onModuleInit() {
-        this.kafkaClient.connect();
+        await this.kafkaClient.connect();
+        console.log('🔍 Subscribing to MQTT topic: sensors/inputVoltage');
+        this.mqttClient.subscribe('sensors/inputVoltage', (err) => {
+            if (err) {
+                console.error('❌ Error subscribing to MQTT topic:', err);
+            }
+            else {
+                console.log('✅ Successfully subscribed to MQTT topic: sensors/inputVoltage');
+            }
+        });
+        this.mqttClient.on('message', (topic, message) => {
+            console.log(`📨 Received MQTT message on ${topic}:`, message.toString());
+            this.handleInputVoltage(message.toString());
+        });
     }
-    handleInputVoltage(data) {
-        this.kafkaClient.emit("inut-voltage", data);
+    async handleInputVoltage(data) {
+        console.log('🔔 Processing MQTT message in handleInputVoltage');
+        console.log('📩 Payload:', data);
+        try {
+            console.log('📤 Sending to Kafka topic: input-voltage');
+            await this.kafkaClient.emit('input.voltage', {
+                value: data,
+                headers: {
+                    'message-type': 'sensor-data',
+                    'timestamp': new Date().toISOString()
+                }
+            }).toPromise();
+            console.log('✅ Successfully sent to Kafka');
+        }
+        catch (error) {
+            console.error('❌ Error sending to Kafka:', error);
+        }
     }
 };
 exports.MqttService = MqttService;
-__decorate([
-    (0, microservices_1.MessagePattern)("sensors/inputVoltage"),
-    __param(0, (0, microservices_1.Payload)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], MqttService.prototype, "handleInputVoltage", null);
 exports.MqttService = MqttService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, common_1.Inject)("KAFKA_PRODUCER")),
-    __metadata("design:paramtypes", [microservices_1.ClientKafka])
+    __param(1, (0, common_1.Inject)("MQTT_CLIENT")),
+    __metadata("design:paramtypes", [microservices_1.ClientKafka, Object])
 ], MqttService);
 //# sourceMappingURL=mqtt.service.js.map

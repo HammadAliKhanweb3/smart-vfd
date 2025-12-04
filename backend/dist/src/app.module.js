@@ -41,7 +41,7 @@ exports.AppModule = AppModule = __decorate([
             { provide: core_1.APP_PIPE,
                 useClass: common_1.ValidationPipe,
             },
-            app_resolver_1.AppResolver
+            app_resolver_1.AppResolver,
         ]
     })
 ], AppModule);

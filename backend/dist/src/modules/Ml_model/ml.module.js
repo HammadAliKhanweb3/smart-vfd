@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.MlModule = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
+const ml_service_1 = require("./ml.service");
 let MlModule = class MlModule {
 };
 exports.MlModule = MlModule;
@@ -17,7 +18,7 @@ exports.MlModule = MlModule = __decorate([
         imports: [
             microservices_1.ClientsModule.register([
                 {
-                    name: 'ML_SERVICE',
+                    name: 'KAFKA_ML',
                     transport: microservices_1.Transport.KAFKA,
                     options: {
                         client: {
@@ -25,12 +26,15 @@ exports.MlModule = MlModule = __decorate([
                             brokers: ['localhost:9092'],
                         },
                         consumer: {
-                            groupId: 'ml-consumer'
+                            groupId: 'ml-consumer-group',
+                            allowAutoTopicCreation: true
                         }
                     }
                 },
             ]),
-        ]
+        ],
+        providers: [ml_service_1.MlService],
+        exports: [ml_service_1.MlService],
     })
 ], MlModule);
 //# sourceMappingURL=ml.module.js.map

@@ -16,24 +16,23 @@ exports.MlService = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 let MlService = class MlService {
-    client;
-    constructor(client) {
-        this.client = client;
-    }
-    async handle(data) {
+    async handle(data, context) {
         console.log("ML consumer:", data);
+        console.log(`Topic: ${context.getTopic()}`);
+        console.log('📥 ML Service received message:', data);
+        return { status: 'processed' };
     }
 };
 exports.MlService = MlService;
 __decorate([
-    (0, microservices_1.MessagePattern)("input-voltage"),
+    (0, microservices_1.EventPattern)("input.voltage"),
+    __param(0, (0, microservices_1.Payload)()),
+    __param(1, (0, microservices_1.Ctx)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, microservices_1.KafkaContext]),
     __metadata("design:returntype", Promise)
 ], MlService.prototype, "handle", null);
 exports.MlService = MlService = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, common_1.Inject)("KAFKA_ML")),
-    __metadata("design:paramtypes", [microservices_1.ClientKafka])
+    (0, common_1.Injectable)()
 ], MlService);
 //# sourceMappingURL=ml.service.js.map

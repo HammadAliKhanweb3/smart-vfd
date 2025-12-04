@@ -8,6 +8,7 @@ import { FrontendModule } from './modules/Frontend/frontend.module';
 import { DbModule } from './modules/db/db.module';
 import { MlModule } from './modules/Ml_model/ml.module';
 import { AppResolver } from './app.resolver';
+import { MqttService } from './modules/MQTT/mqtt.service';
 
 
 
@@ -31,7 +32,7 @@ providers:[
   {provide:APP_PIPE,
   useClass:ValidationPipe,
 },
-AppResolver
+AppResolver,
 ]
 })
 

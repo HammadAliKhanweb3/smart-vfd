@@ -1,100 +1,59 @@
-// import { Injectable } from "@nestjs/common";
-// import { MessagePattern, Payload } from "@nestjs/microservices";
-
+// 
+// Update your mqtt.service.ts with this code
 import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
-import { ClientKafka, MessagePattern, Payload } from "@nestjs/microservices";
-
-
-
-// @Injectable()
-// export class MqttService{
-
-
-//   @MessagePattern('sensors/vfd-temperature')
-//   handleVfdTemperature(@Payload() payload: string) {
-//     console.log("VFD Temperature:", payload);
-//     this.publishToKafka("sensors_vfdTemperature",payload)
-//   }
-  
-//   @MessagePattern('sensors/input-voltage')
-//   handleInputVoltage(@Payload() payload: string) {
-//     console.log("Input Voltage:", payload);
-//   }
-  
-//   @MessagePattern('sensors/input-current')
-//   handleInputCurrent(@Payload() payload: string) {
-//     console.log("Input Current:", payload);
-    
-//   }
-
-//   @MessagePattern('sensors/motor-temperature')
-//   handleMotorTemperature(@Payload() payload: string) {
-//     console.log("Motor Temperature:", payload);
-    
-//   }
-
-//   @MessagePattern('sensors/phase1-voltage')
-//   handlePhaseOneVoltage(@Payload() payload: string) {
-//     console.log("Phase 1 Voltage:", payload);
-    
-//   }
-
-//   @MessagePattern('sensors/phase1-current')
-//   handlePhaseOneCurrent(@Payload() payload: string) {
-//     console.log("Phase 1 Current:", payload);
-    
-//   }
-
-//   @MessagePattern('sensors/phase2-voltage')
-//   handlePhaseTwoVoltage(@Payload() payload: string) {
-//     console.log("Phase 2 Voltage:", payload);
-
-//   }
-
-//   @MessagePattern('sensors/phase2-current')
-//   handlePhaseTwoCurrent(@Payload() payload: string) {
-//     console.log("Phase 2 Current:", payload);
-
-//   }
-
-//   @MessagePattern('sensors/phase3-voltage')
-//   handlePhaseThreeVoltage(@Payload() payload: string) {
-//     console.log("Phase 3 Voltage:", payload);
-    
-//   }
-
-//   @MessagePattern('sensors/phase3-current')
-//   handlePhaseThreeCurrent(@Payload() payload: string) {
-//     console.log("Phase 3 Current:", payload);
-//   }
-
-//   @MessagePattern('sensors/motor-torque')
-//   handleMotorTorque(@Payload() payload: string) {
-//     console.log("Motor Torque:", payload);
-//   }
-
-//   @MessagePattern('sensors/motor-speed')
-//   handleMotorSpeed(@Payload() payload: string) {
-//     console.log("Motor Speed:", payload);
-//   }
-// }
-
-
-
+import { ClientKafka } from "@nestjs/microservices";
+import { MqttClient } from "mqtt";
 
 @Injectable()
-export class MqttService implements OnModuleInit{
-  constructor(@Inject("KAFKA_PRODUCER") private readonly kafkaClient:ClientKafka){}
+export class MqttService implements OnModuleInit {
+  private mqttClient: MqttClient;
 
+  constructor(
+    @Inject("KAFKA_PRODUCER") 
+    private readonly kafkaClient: ClientKafka,
+    @Inject("MQTT_CLIENT") 
+    private readonly client: any
+  ) {
+    this.mqttClient = client;
+    console.log('Kafka producer initialized for MQTT service');
+  }
 
   async onModuleInit() {
-    this.kafkaClient.connect()
-  }
-  
-  @MessagePattern("sensors/inputVoltage")
-  handleInputVoltage(@Payload() data:string){
-   this.kafkaClient.emit("inut-voltage",data)
+    await this.kafkaClient.connect();
+    
+    console.log('🔍 Subscribing to MQTT topic: sensors/inputVoltage');
+    this.mqttClient.subscribe('sensors/inputVoltage', (err) => {
+      if (err) {
+        console.error('❌ Error subscribing to MQTT topic:', err);
+      } else {
+        console.log('✅ Successfully subscribed to MQTT topic: sensors/inputVoltage');
+      }
+    });
+
+    // Handle incoming messages
+    this.mqttClient.on('message', (topic, message) => {
+      console.log(`📨 Received MQTT message on ${topic}:`, message.toString());
+      this.handleInputVoltage(message.toString());
+    });
   }
 
-
+  private async handleInputVoltage(data: string) {
+    console.log('🔔 Processing MQTT message in handleInputVoltage');
+    console.log('📩 Payload:', data);
+    
+    try {
+      console.log('📤 Sending to Kafka topic: input-voltage');
+      // Send as a proper Kafka message with value and headers
+      await this.kafkaClient.emit('input.voltage', {
+        value: data,
+        headers: {
+          'message-type': 'sensor-data',
+          'timestamp': new Date().toISOString()
+        }
+      }).toPromise();
+      console.log('✅ Successfully sent to Kafka');
+    } catch (error) {
+      console.error('❌ Error sending to Kafka:', error);
+    }
+  }
 }

@@ -2,7 +2,9 @@ import { OnModuleInit } from "@nestjs/common";
 import { ClientKafka } from "@nestjs/microservices";
 export declare class MqttService implements OnModuleInit {
     private readonly kafkaClient;
-    constructor(kafkaClient: ClientKafka);
+    private readonly client;
+    private mqttClient;
+    constructor(kafkaClient: ClientKafka, client: any);
     onModuleInit(): Promise<void>;
-    handleInputVoltage(data: string): void;
+    private handleInputVoltage;
 }
