@@ -8,9 +8,9 @@ async function bootstrap() {
     const kafkaMicroservice = app.connectMicroservice({
         transport: microservices_1.Transport.KAFKA,
         options: {
-            client: { brokers: ['localhost:9092'] },
+            client: { clientId: "sensors", brokers: ['localhost:9092'] },
             consumer: {
-                groupId: 'ml-consumer-group',
+                groupId: "ml-consumer-group",
                 allowAutoTopicCreation: true,
             },
         },

@@ -1,24 +1,12 @@
-import { Inject, Injectable, OnModuleInit } from "@nestjs/common";
-import { ClientKafka, Ctx, EventPattern, KafkaContext, MessagePattern, Payload } from "@nestjs/microservices";
-
+import { Injectable } from "@nestjs/common";
+import { EventPattern, MessagePattern, Payload } from "@nestjs/microservices";
 
 @Injectable()
-export class MlService implements OnModuleInit{
-    constructor(@Inject("KAFKA_ML") private client:ClientKafka){}
+export class MlService {
 
-      async onModuleInit() {
-    // Subscribe to the topic to ensure the consumer is connected
-    this.client.subscribeToResponseOf('input.voltage');
-    await this.client.connect();
-    console.log('✅ ML Service connected to Kafka');
+  @MessagePattern("input.voltage")  // MUST match the Kafka topic exactly
+  handleVoltage(@Payload() data: any) {
+    console.log("📥 ML CONSUMER RECEIVED:", data);
+    // Do your ML processing here
   }
-
-    @EventPattern("input.voltage")
-    async handle(@Payload() data:string,@Ctx() context:KafkaContext ){
-        console.log("ML consumer:",data)  
-        
-           console.log('📥 ML Service received message:', data);
-    // Process your ML logic here
-    return { status: 'processed' };   
-    }
 }

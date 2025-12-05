@@ -30,11 +30,16 @@ async function bootstrap() {
   //   });
   // }
    const kafkaMicroservice = app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.KAFKA,
-    options: {
-      client: { clientId:"sensors",brokers: ['localhost:9092'] },
+  transport: Transport.KAFKA,
+  options: {
+    client: { clientId: "sensors", brokers: ['localhost:9092'] },
+    consumer: {
+      groupId: "ml-consumer-group", // unique for MLService
+      allowAutoTopicCreation: true,
     },
-  });
+  },
+});
+
 
   await app.startAllMicroservices()
   await app.listen(process.env.PORT ?? 3000);

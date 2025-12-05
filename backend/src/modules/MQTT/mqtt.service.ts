@@ -44,13 +44,7 @@ export class MqttService implements OnModuleInit {
     try {
       console.log('📤 Sending to Kafka topic: input-voltage');
       // Send as a proper Kafka message with value and headers
-      await this.kafkaClient.emit('input.voltage', {
-        value: data,
-        headers: {
-          'message-type': 'sensor-data',
-          'timestamp': new Date().toISOString()
-        }
-      }).toPromise();
+      await this.kafkaClient.emit('input.voltage', JSON.stringify(data))
       console.log('✅ Successfully sent to Kafka');
     } catch (error) {
       console.error('❌ Error sending to Kafka:', error);

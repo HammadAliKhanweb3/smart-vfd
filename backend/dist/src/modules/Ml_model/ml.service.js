@@ -16,22 +16,18 @@ exports.MlService = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 let MlService = class MlService {
-    async handle(data, context) {
-        console.log("ML consumer:", data);
-        console.log(`Topic: ${context.getTopic()}`);
-        console.log('📥 ML Service received message:', data);
-        return { status: 'processed' };
+    handleVoltage(data) {
+        console.log("📥 ML CONSUMER RECEIVED:", data);
     }
 };
 exports.MlService = MlService;
 __decorate([
-    (0, microservices_1.EventPattern)("input.voltage"),
+    (0, microservices_1.MessagePattern)("input-voltage"),
     __param(0, (0, microservices_1.Payload)()),
-    __param(1, (0, microservices_1.Ctx)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, microservices_1.KafkaContext]),
-    __metadata("design:returntype", Promise)
-], MlService.prototype, "handle", null);
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], MlService.prototype, "handleVoltage", null);
 exports.MlService = MlService = __decorate([
     (0, common_1.Injectable)()
 ], MlService);

@@ -46,13 +46,7 @@ let MqttService = class MqttService {
         console.log('📩 Payload:', data);
         try {
             console.log('📤 Sending to Kafka topic: input-voltage');
-            await this.kafkaClient.emit('input.voltage', {
-                value: data,
-                headers: {
-                    'message-type': 'sensor-data',
-                    'timestamp': new Date().toISOString()
-                }
-            }).toPromise();
+            await this.kafkaClient.emit('input.voltage', JSON.stringify(data));
             console.log('✅ Successfully sent to Kafka');
         }
         catch (error) {
