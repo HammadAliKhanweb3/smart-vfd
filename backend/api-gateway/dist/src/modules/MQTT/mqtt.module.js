@@ -56,12 +56,12 @@ exports.MqttModule = MqttModule = __decorate([
                     transport: microservices_1.Transport.KAFKA,
                     options: {
                         client: {
-                            clientId: "mqtt-producer",
+                            clientId: "hero",
                             brokers: ['localhost:9092']
                         },
                         producer: {
                             allowAutoTopicCreation: true
-                        }
+                        },
                     }
                 }
             ])

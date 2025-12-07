@@ -16,13 +16,17 @@ exports.MlService = void 0;
 const common_1 = require("@nestjs/common");
 const microservices_1 = require("@nestjs/microservices");
 let MlService = class MlService {
-    handleVoltage(data) {
-        console.log("📥 ML CONSUMER RECEIVED:", data);
+    onModuleInit() {
+        console.log('🚀 ML Service initialized and waiting for Kafka messages...');
+    }
+    handleVoltage(message) {
+        console.log('📥 ML SERVICE RECEIVED MESSAGE:', message);
+        console.log("Type:", typeof message);
     }
 };
 exports.MlService = MlService;
 __decorate([
-    (0, microservices_1.MessagePattern)("input-voltage"),
+    (0, microservices_1.EventPattern)('input.voltage'),
     __param(0, (0, microservices_1.Payload)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),

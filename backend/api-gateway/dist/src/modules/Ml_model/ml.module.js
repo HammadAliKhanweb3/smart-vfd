@@ -15,6 +15,7 @@ exports.MlModule = MlModule;
 exports.MlModule = MlModule = __decorate([
     (0, common_1.Module)({
         providers: [ml_service_1.MlService],
+        exports: [ml_service_1.MlService],
     })
 ], MlModule);
 //# sourceMappingURL=ml.module.js.map

@@ -12,14 +12,14 @@ import * as mqtt from 'mqtt';
         transport: Transport.KAFKA,
         options: {
           client: {
-            clientId: "mqtt-producer",
+            clientId: "hero",
             brokers: ['localhost:9092']
           },
           producer: {
             allowAutoTopicCreation: true
-          }
+          },
         }
-      }
+            }
     ])
   ],
   providers: [

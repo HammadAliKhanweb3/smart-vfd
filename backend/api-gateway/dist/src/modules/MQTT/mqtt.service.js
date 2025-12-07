@@ -26,15 +26,13 @@ let MqttService = class MqttService {
         console.log('Kafka producer initialized for MQTT service');
     }
     async onModuleInit() {
+        this.kafkaClient.subscribeToResponseOf("hero.get");
         await this.kafkaClient.connect();
-        console.log('🔍 Subscribing to MQTT topic: sensors/inputVoltage');
         this.mqttClient.subscribe('sensors/inputVoltage', (err) => {
-            if (err) {
+            if (err)
                 console.error('❌ Error subscribing to MQTT topic:', err);
-            }
-            else {
+            else
                 console.log('✅ Successfully subscribed to MQTT topic: sensors/inputVoltage');
-            }
         });
         this.mqttClient.on('message', (topic, message) => {
             console.log(`📨 Received MQTT message on ${topic}:`, message.toString());
@@ -45,8 +43,9 @@ let MqttService = class MqttService {
         console.log('🔔 Processing MQTT message in handleInputVoltage');
         console.log('📩 Payload:', data);
         try {
-            console.log('📤 Sending to Kafka topic: input-voltage');
-            await this.kafkaClient.emit('input.voltage', JSON.stringify(data));
+            const response = await this.kafkaClient.send('medium.rocks', { foo: "bar", data });
+            console.log(response);
+            this.kafkaClient.emit('input.voltage', { foo: 'bar', data: new Date().toString() });
             console.log('✅ Successfully sent to Kafka');
         }
         catch (error) {

@@ -13,36 +13,32 @@ const apollo_1 = require("@nestjs/apollo");
 const path_1 = require("path");
 const core_1 = require("@nestjs/core");
 const mqtt_module_1 = require("./modules/MQTT/mqtt.module");
-const frontend_module_1 = require("./modules/Frontend/frontend.module");
 const db_module_1 = require("./modules/db/db.module");
-const ml_module_1 = require("./modules/Ml_model/ml.module");
+const frontend_module_1 = require("./modules/Frontend/frontend.module");
 const app_resolver_1 = require("./app.resolver");
+const ml_module_1 = require("./modules/Ml_model/ml.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            ml_module_1.MlModule,
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
                 sortSchema: true,
-                subscriptions: {
-                    'graphql-ws': true,
-                },
-                playground: true
+                subscriptions: { 'graphql-ws': true },
+                playground: true,
             }),
             mqtt_module_1.MqttModule,
             db_module_1.DbModule,
             frontend_module_1.FrontendModule,
-            ml_module_1.MlModule
         ],
         providers: [
-            { provide: core_1.APP_PIPE,
-                useClass: common_1.ValidationPipe,
-            },
+            { provide: core_1.APP_PIPE, useClass: common_1.ValidationPipe },
             app_resolver_1.AppResolver,
-        ]
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
