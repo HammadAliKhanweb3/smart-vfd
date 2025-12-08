@@ -12,27 +12,31 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MlService = void 0;
+exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
+const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
-let MlService = class MlService {
-    onModuleInit() {
-        console.log('🚀 ML Service initialized and waiting for Kafka messages...');
+let AppController = class AppController {
+    appService;
+    constructor(appService) {
+        this.appService = appService;
     }
-    handleVoltage(message) {
-        console.log('📥 ML SERVICE RECEIVED MESSAGE:', message);
-        console.log("Type:", typeof message);
+    readMessage(message, context) {
+        const originalMessage = context.getMessage();
+        common_1.Logger.log("Recieved at kafka broker", originalMessage.value);
     }
 };
-exports.MlService = MlService;
+exports.AppController = AppController;
 __decorate([
     (0, microservices_1.EventPattern)('input.voltage'),
     __param(0, (0, microservices_1.Payload)()),
+    __param(1, (0, microservices_1.Ctx)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [Object, microservices_1.KafkaContext]),
     __metadata("design:returntype", void 0)
-], MlService.prototype, "handleVoltage", null);
-exports.MlService = MlService = __decorate([
-    (0, common_1.Injectable)()
-], MlService);
-//# sourceMappingURL=ml.service.js.map
+], AppController.prototype, "readMessage", null);
+exports.AppController = AppController = __decorate([
+    (0, common_1.Controller)(),
+    __metadata("design:paramtypes", [app_service_1.AppService])
+], AppController);
+//# sourceMappingURL=app.controller.js.map

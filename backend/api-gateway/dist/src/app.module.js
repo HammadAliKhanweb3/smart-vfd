@@ -12,18 +12,17 @@ const graphql_1 = require("@nestjs/graphql");
 const apollo_1 = require("@nestjs/apollo");
 const path_1 = require("path");
 const core_1 = require("@nestjs/core");
-const mqtt_module_1 = require("./modules/MQTT/mqtt.module");
 const db_module_1 = require("./modules/db/db.module");
 const frontend_module_1 = require("./modules/Frontend/frontend.module");
 const app_resolver_1 = require("./app.resolver");
-const ml_module_1 = require("./modules/Ml_model/ml.module");
+const app_controller_1 = require("./app.controller");
+const app_service_1 = require("./app.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            ml_module_1.MlModule,
             graphql_1.GraphQLModule.forRoot({
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
@@ -31,13 +30,13 @@ exports.AppModule = AppModule = __decorate([
                 subscriptions: { 'graphql-ws': true },
                 playground: true,
             }),
-            mqtt_module_1.MqttModule,
             db_module_1.DbModule,
             frontend_module_1.FrontendModule,
         ],
+        controllers: [app_controller_1.AppController],
         providers: [
             { provide: core_1.APP_PIPE, useClass: common_1.ValidationPipe },
-            app_resolver_1.AppResolver,
+            app_resolver_1.AppResolver, app_service_1.AppService
         ],
     })
 ], AppModule);

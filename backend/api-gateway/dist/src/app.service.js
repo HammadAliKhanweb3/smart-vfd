@@ -9,50 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersService = void 0;
+exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
-const prisma_service_1 = require("./prisma.service");
-let UsersService = class UsersService {
-    prisma;
-    constructor(prisma) {
-        this.prisma = prisma;
-    }
-    async user(userWhereUniqueInput) {
-        return this.prisma.sensorsData.findUnique({
-            where: userWhereUniqueInput,
-        });
-    }
-    async users(params) {
-        const { skip, take, cursor, where, orderBy } = params;
-        return this.prisma.sensorsData.findMany({
-            skip,
-            take,
-            cursor,
-            where,
-            orderBy,
-        });
-    }
-    async createUser(data) {
-        return this.prisma.sensorsData.create({
-            data,
-        });
-    }
-    async updateUser(params) {
-        const { where, data } = params;
-        return this.prisma.sensorsData.update({
-            data,
-            where,
-        });
-    }
-    async deleteUser(where) {
-        return this.prisma.sensorsData.delete({
-            where,
-        });
-    }
+let AppService = class AppService {
+    constructor() { }
 };
-exports.UsersService = UsersService;
-exports.UsersService = UsersService = __decorate([
+exports.AppService = AppService;
+exports.AppService = AppService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], UsersService);
+    __metadata("design:paramtypes", [])
+], AppService);
 //# sourceMappingURL=app.service.js.map
