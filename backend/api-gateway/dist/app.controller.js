@@ -21,7 +21,7 @@ let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
-    readMessage(message, context) {
+    readVoltage(message, context) {
         const originalMessage = context.getMessage();
         common_1.Logger.log("Recieved at kafka broker", originalMessage.value);
     }
@@ -34,7 +34,7 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, microservices_1.KafkaContext]),
     __metadata("design:returntype", void 0)
-], AppController.prototype, "readMessage", null);
+], AppController.prototype, "readVoltage", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

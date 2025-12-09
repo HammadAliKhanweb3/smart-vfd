@@ -12,7 +12,7 @@ export class AppController {
 //   }
 
   @EventPattern('input.voltage')
-  readMessage(@Payload() message: any, @Ctx() context: KafkaContext) {
+  readVoltage(@Payload() message: any, @Ctx() context: KafkaContext) {
     const originalMessage = context.getMessage();
     Logger.log("Recieved at kafka broker",originalMessage.value)
   }
