@@ -5,3 +5,7 @@
 type Query {
   hello: String!
 }
+
+type Subscription {
+  inputVoltage: Float!
+}

@@ -11,18 +11,6 @@ async function bootstrap() {
             url: "mqtt://localhost:1883"
         }
     });
-    const mqttClient = app.client;
-    if (mqttClient) {
-        mqttClient.on('connect', () => {
-            console.log('✅ MQTT Client connected to broker');
-        });
-        mqttClient.on('error', (error) => {
-            console.error('❌ MQTT Client error:', error);
-        });
-        mqttClient.on('message', (topic, message) => {
-            console.log(`📨 Received MQTT message on ${topic}:`, message.toString());
-        });
-    }
     await app.listen();
     common_1.Logger.log("✅ MQTT microservice connected ");
 }

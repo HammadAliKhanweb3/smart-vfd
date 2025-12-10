@@ -1,9 +1,19 @@
-import { Resolver, Query } from '@nestjs/graphql';
+import { Resolver, Query, Subscription, Float } from '@nestjs/graphql';
+import { pubSub } from "./pubSub" 
 
 @Resolver()
 export class AppResolver {
-  @Query(() => String)
+  constructor() {
+        console.log('✅ AppResolver LOADED');
+  }
+  @Query(()=>String)
   hello(): string {
-    return 'Hello World!';
+    return "Hello World!"
+  }
+
+  @Subscription(()=>Float)
+  inputVoltage() {
+    console.log("recieved in subsc");
+    return pubSub.asyncIterableIterator('inputVoltage')
   }
 }

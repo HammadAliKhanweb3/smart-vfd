@@ -3,10 +3,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { APP_PIPE } from '@nestjs/core';
-import { AppResolver } from './app.resolver';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AppResolver } from './app.resolver';
 
 @Module({
   imports: [
@@ -14,8 +13,13 @@ import { AppService } from './app.service';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
-      subscriptions: { 'graphql-ws': true },
+   //   subscriptions: { 'graphql-ws': true },
+        subscriptions: {
+    'subscriptions-transport-ws': true, // ✅ REQUIRED for Playground
+  },
+
       playground: true,
+        installSubscriptionHandlers: true
     }),
   ],
   controllers: [AppController],

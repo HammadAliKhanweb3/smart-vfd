@@ -16,6 +16,7 @@ exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
+const pubSub_1 = require("./pubSub");
 let AppController = class AppController {
     appService;
     constructor(appService) {
@@ -23,6 +24,7 @@ let AppController = class AppController {
     }
     readVoltage(message, context) {
         const originalMessage = context.getMessage();
+        pubSub_1.pubSub.publish('inputVoltage', { inputVoltage: originalMessage });
         common_1.Logger.log("Recieved at kafka broker", originalMessage.value);
     }
 };

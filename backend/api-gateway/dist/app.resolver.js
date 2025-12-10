@@ -11,9 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
+const pubSub_1 = require("./pubSub");
 let AppResolver = class AppResolver {
+    constructor() {
+        console.log('✅ AppResolver LOADED');
+    }
     hello() {
-        return 'Hello World!';
+        return "Hello World!";
+    }
+    inputVoltage() {
+        console.log("recieved in subsc");
+        return pubSub_1.pubSub.asyncIterableIterator('inputVoltage');
     }
 };
 exports.AppResolver = AppResolver;
@@ -23,7 +31,14 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", String)
 ], AppResolver.prototype, "hello", null);
+__decorate([
+    (0, graphql_1.Subscription)(() => graphql_1.Float),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AppResolver.prototype, "inputVoltage", null);
 exports.AppResolver = AppResolver = __decorate([
-    (0, graphql_1.Resolver)()
+    (0, graphql_1.Resolver)(),
+    __metadata("design:paramtypes", [])
 ], AppResolver);
 //# sourceMappingURL=app.resolver.js.map
