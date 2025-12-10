@@ -12,9 +12,9 @@ const graphql_1 = require("@nestjs/graphql");
 const apollo_1 = require("@nestjs/apollo");
 const path_1 = require("path");
 const core_1 = require("@nestjs/core");
-const app_resolver_1 = require("./app.resolver");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
+const app_resolver_1 = require("./app.resolver");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -25,8 +25,11 @@ exports.AppModule = AppModule = __decorate([
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
                 sortSchema: true,
-                subscriptions: { 'graphql-ws': true },
+                subscriptions: {
+                    'subscriptions-transport-ws': true,
+                },
                 playground: true,
+                installSubscriptionHandlers: true
             }),
         ],
         controllers: [app_controller_1.AppController],
