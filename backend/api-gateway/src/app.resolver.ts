@@ -1,5 +1,6 @@
 import { Resolver, Query, Subscription, Float } from '@nestjs/graphql';
 import { pubSub } from "./pubSub" 
+import { SensorData } from './sensor-data.model';
 
 @Resolver()
 export class AppResolver {
@@ -11,7 +12,7 @@ export class AppResolver {
     return "Hello World!"
   }
 
-  @Subscription(()=>Float)
+  @Subscription(()=>SensorData)
   inputVoltage() {
     console.log("recieved in subsc");
     return pubSub.asyncIterableIterator('inputVoltage')

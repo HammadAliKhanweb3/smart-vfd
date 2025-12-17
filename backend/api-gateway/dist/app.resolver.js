@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const pubSub_1 = require("./pubSub");
+const sensor_data_model_1 = require("./sensor-data.model");
 let AppResolver = class AppResolver {
     constructor() {
         console.log('✅ AppResolver LOADED');
@@ -32,7 +33,7 @@ __decorate([
     __metadata("design:returntype", String)
 ], AppResolver.prototype, "hello", null);
 __decorate([
-    (0, graphql_1.Subscription)(() => graphql_1.Float),
+    (0, graphql_1.Subscription)(() => sensor_data_model_1.SensorData),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
