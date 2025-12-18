@@ -7,18 +7,18 @@ type Query {
 }
 
 type SensorData {
-  currentP1: Float!
-  currentP2: Float!
-  currentP3: Float!
-  motorCurrent: Float!
-  motorSpeed: Float!
-  motorVibration: Float!
-  tempMotor: Float!
-  tempVfd: Float!
-  voltageInput: Float!
-  voltageP1: Float!
-  voltageP2: Float!
-  voltageP3: Float!
+  currentP1: Float
+  currentP2: Float
+  currentP3: Float
+  motorCurrent: Float
+  motorSpeed: Float
+  motorVibration: Float
+  tempMotor: Float
+  tempVfd: Float
+  voltageInput: Float
+  voltageP1: Float
+  voltageP2: Float
+  voltageP3: Float
 }
 
 type Subscription {

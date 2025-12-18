@@ -23,9 +23,9 @@ let AppController = class AppController {
         this.appService = appService;
     }
     readVoltage(message, context) {
-        const originalMessage = context.getMessage();
-        pubSub_1.pubSub.publish('inputVoltage', { inputVoltage: originalMessage });
-        common_1.Logger.log("Recieved at kafka broker", originalMessage.value);
+        const sensorData = context.getMessage();
+        pubSub_1.pubSub.publish('inputVoltage', { inputVoltage: sensorData.value });
+        common_1.Logger.log("Recieved at kafka broker", sensorData.value);
     }
 };
 exports.AppController = AppController;

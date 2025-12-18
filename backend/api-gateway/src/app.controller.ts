@@ -2,6 +2,7 @@ import { Controller, Get, Logger } from '@nestjs/common';
 import { AppService } from './app.service';
 import { Ctx, EventPattern, KafkaContext, Payload } from '@nestjs/microservices';
 import { pubSub } from './pubSub';
+import { SensorData } from './sensor-data.model';
 
 @Controller()
 export class AppController {
@@ -17,9 +18,11 @@ export class AppController {
 
   @EventPattern('input.voltage')
   readVoltage(@Payload() message: any, @Ctx() context: KafkaContext) {
-    const originalMessage = context.getMessage();
-    pubSub.publish('inputVoltage',{inputVoltage:originalMessage})
-    Logger.log("Recieved at kafka broker",originalMessage.value)
+    const sensorData = context.getMessage();
+
+    pubSub.publish('inputVoltage',{inputVoltage:sensorData.value})
+    Logger.log("Recieved at kafka broker",sensorData.value)
+    
   }
   
 }

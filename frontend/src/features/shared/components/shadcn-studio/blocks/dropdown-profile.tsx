@@ -10,7 +10,7 @@ import {
   LogOutIcon
 } from 'lucide-react'
 
-import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
+import { Avatar, AvatarImage, AvatarFallback } from '@/features/shared/components/ui/avatar'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,7 +19,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu'
+} from '@/features/shared/components/ui/dropdown-menu'
 
 type Props = {
   trigger: ReactNode

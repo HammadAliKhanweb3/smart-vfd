@@ -1,13 +1,13 @@
-import { type Item } from '@/components/shadcn-studio/blocks/datatable-transaction'
+import { type Item } from '@/features/shared/components/shadcn-studio/blocks/datatable-transaction'
 import { createFileRoute } from '@tanstack/react-router'
 
-import { Card } from '@/components/ui/card'
+import { Card } from '@/features/shared/components/ui/card'
 
-import SalesMetricsCard from '@/components/shadcn-studio/blocks/chart-sales-metrics'
-import TransactionDatatable from '@/components/shadcn-studio/blocks/datatable-transaction'
-import StatisticsCard from '@/components/shadcn-studio/blocks/statistics-card-01'
-import ProductInsightsCard from '@/components/shadcn-studio/blocks/widget-product-insights'
-import TotalEarningCard from '@/components/shadcn-studio/blocks/widget-total-earning'
+import SalesMetricsCard from '@/features/shared/components/shadcn-studio/blocks/chart-sales-metrics'
+import TransactionDatatable from '@/features/shared/components/shadcn-studio/blocks/datatable-transaction'
+import StatisticsCard from '@/features/shared/components/shadcn-studio/blocks/statistics-card-01'
+import ProductInsightsCard from '@/features/shared/components/shadcn-studio/blocks/widget-product-insights'
+import TotalEarningCard from '@/features/shared/components/shadcn-studio/blocks/widget-total-earning'
 
 import {
     Activity,

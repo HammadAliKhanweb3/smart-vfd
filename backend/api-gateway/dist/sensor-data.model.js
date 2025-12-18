@@ -27,51 +27,51 @@ let SensorData = class SensorData {
 };
 exports.SensorData = SensorData;
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "tempVfd", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "voltageInput", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "voltageP1", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "voltageP2", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "voltageP3", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "currentP1", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "currentP2", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "currentP3", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "tempMotor", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "motorSpeed", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "motorCurrent", void 0);
 __decorate([
-    (0, graphql_1.Field)(() => graphql_1.Float),
+    (0, graphql_1.Field)(() => graphql_1.Float, { nullable: true }),
     __metadata("design:type", Number)
 ], SensorData.prototype, "motorVibration", void 0);
 exports.SensorData = SensorData = __decorate([

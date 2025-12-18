@@ -1,6 +1,6 @@
-import LanguageDropdown from '@/components/shadcn-studio/blocks/dropdown-language'
-import ProfileDropdown from '@/components/shadcn-studio/blocks/dropdown-profile'
-import { Avatar, AvatarImage } from '@/components/ui/avatar'
+import LanguageDropdown from '@/features/shared/components/shadcn-studio/blocks/dropdown-language'
+import ProfileDropdown from '@/features/shared/components/shadcn-studio/blocks/dropdown-profile'
+import { Avatar, AvatarImage } from '@/features/shared/components/ui/avatar'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -8,9 +8,9 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator
-} from '@/components/ui/breadcrumb'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
+} from '@/features/shared/components/ui/breadcrumb'
+import { Button } from '@/features/shared/components/ui/button'
+import { Separator } from '@/features/shared/components/ui/separator'
 import {
     Sidebar,
     SidebarContent,
@@ -23,7 +23,7 @@ import {
     SidebarMenuItem,
     SidebarProvider,
     SidebarTrigger
-} from '@/components/ui/sidebar'
+} from '@/features/shared/components/ui/sidebar'
 import { createFileRoute, Link, Outlet, useLocation } from '@tanstack/react-router'
 import {
     FacebookIcon,
