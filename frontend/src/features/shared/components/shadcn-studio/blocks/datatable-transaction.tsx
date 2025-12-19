@@ -25,7 +25,7 @@ import {
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from '@/features/shared/components/ui/pagination'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/features/shared/components/ui/table'
 
-import { usePagination } from '@/hooks/use-pagination'
+import { usePagination } from '@/features/shared/hooks/use-pagination'
 
 export type Item = {
   id: string
