@@ -1,13 +1,11 @@
-import { type Item } from '@/features/shared/components/shadcn-studio/blocks/datatable-transaction'
-import { createFileRoute } from '@tanstack/react-router'
+import { type Item } from '@/features/dashboard/shared/components/shadcn-studio/blocks/datatable-transaction'
+import { Card } from '@/features/dashboard/shared/components/ui/card'
 
-import { Card } from '@/features/shared/components/ui/card'
-
-import SalesMetricsCard from '@/features/shared/components/shadcn-studio/blocks/chart-sales-metrics'
-import TransactionDatatable from '@/features/shared/components/shadcn-studio/blocks/datatable-transaction'
-import StatisticsCard from '@/features/shared/components/shadcn-studio/blocks/statistics-card-01'
-import ProductInsightsCard from '@/features/shared/components/shadcn-studio/blocks/widget-product-insights'
-import TotalEarningCard from '@/features/shared/components/shadcn-studio/blocks/widget-total-earning'
+import SalesMetricsCard from '@/features/dashboard/shared/components/shadcn-studio/blocks/chart-sales-metrics'
+import TransactionDatatable from '@/features/dashboard/shared/components/shadcn-studio/blocks/datatable-transaction'
+import StatisticsCard from '@/features/dashboard/shared/components/shadcn-studio/blocks/statistics-card-01'
+import ProductInsightsCard from '@/features/dashboard/shared/components/shadcn-studio/blocks/widget-product-insights'
+import TotalEarningCard from '@/features/dashboard/shared/components/shadcn-studio/blocks/widget-total-earning'
 
 import {
     Activity,
@@ -17,7 +15,6 @@ import {
     
 } from 'lucide-react'
 
-// Statistics card data
 const StatisticsCardData = [
     {
         
@@ -374,46 +371,43 @@ const transactionData: Item[] = [
     }
 ]
 
-export const Route = createFileRoute('/dashboard/')({
-    component: RouteComponent,
-})
+export function dashboardMain() {
 
-function RouteComponent() {
-    return (
-        <div className='grid grid-cols-2 gap-6 lg:grid-cols-3'>
-            {/* Statistics Cards */}
-            <div className='col-span-full grid gap-6 sm:grid-cols-4 md:max-lg:grid-cols-1'>
-                {StatisticsCardData.map((card, index) => (
-                    <StatisticsCard
-                        key={index}
-                        icon={card.icon}
-                        title={card.title}
-                        value={card.value}
-                        changePercentage={card.changePercentage}
+  return (
+    <div className='grid grid-cols-2 gap-6 lg:grid-cols-3'>
+                {/* Statistics Cards */}
+                <div className='col-span-full grid gap-6 sm:grid-cols-4 md:max-lg:grid-cols-1'>
+                    {StatisticsCardData.map((card, index) => (
+                        <StatisticsCard
+                            key={index}
+                            icon={card.icon}
+                            title={card.title}
+                            value={card.value}
+                            changePercentage={card.changePercentage}
+                        />
+                    ))}
+                </div>
+    
+                <div className='grid gap-6 max-xl:col-span-full lg:max-xl:grid-cols-2'>
+                    {/* Product Insights Card */}
+                    <ProductInsightsCard className='justify-between gap-3 *:data-[slot=card-content]:space-y-5' />
+    
+                    {/* Total Earning Card */}
+                    <TotalEarningCard
+                        title='Total Earning'
+                        earning={24650}
+                        trend='up'
+                        percentage={10}
+                        comparisonText='Compare to last year ($84,325)'
+                        earningData={earningData}
+                        className='justify-between gap-5 sm:min-w-0 *:data-[slot=card-content]:space-y-7'
                     />
-                ))}
+                </div>
+    
+                <SalesMetricsCard className='col-span-full xl:col-span-2 *:data-[slot=card-content]:space-y-6' />
+                <Card className='col-span-full w-full py-0'>
+                    <TransactionDatatable data={transactionData} />
+                </Card>
             </div>
-
-            <div className='grid gap-6 max-xl:col-span-full lg:max-xl:grid-cols-2'>
-                {/* Product Insights Card */}
-                <ProductInsightsCard className='justify-between gap-3 *:data-[slot=card-content]:space-y-5' />
-
-                {/* Total Earning Card */}
-                <TotalEarningCard
-                    title='Total Earning'
-                    earning={24650}
-                    trend='up'
-                    percentage={10}
-                    comparisonText='Compare to last year ($84,325)'
-                    earningData={earningData}
-                    className='justify-between gap-5 sm:min-w-0 *:data-[slot=card-content]:space-y-7'
-                />
-            </div>
-
-            <SalesMetricsCard className='col-span-full xl:col-span-2 *:data-[slot=card-content]:space-y-6' />
-            <Card className='col-span-full w-full py-0'>
-                <TransactionDatatable data={transactionData} />
-            </Card>
-        </div>
-    )
+  )
 }

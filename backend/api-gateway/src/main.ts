@@ -20,7 +20,13 @@ async function bootstrap() {
   );
 
   await app.startAllMicroservices()
-
+  //  app.enableCors({
+  //   origin: 'http://example.com', // Allow specific domain
+  //   methods: 'GET,POST,PUT,DELETE', // Allow HTTP methods
+  //   credentials: true, // Allow cookies to be sent
+  //   allowedHeaders: 'Content-Type, Authorization', // Permitted request headers
+  // })
+  app.enableCors()
   await app.listen(process.env.PORT ?? 3000);
 
   console.log('HTTP server + Kafka ML Consumer running...');

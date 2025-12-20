@@ -9,7 +9,7 @@ import {
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
   DropdownMenuTrigger
-} from '@/features/shared/components/ui/dropdown-menu'
+} from '@/features/dashboard/shared/components/ui/dropdown-menu'
 
 type Props = {
   trigger: ReactNode

@@ -16,6 +16,7 @@ async function bootstrap() {
         },
     });
     await app.startAllMicroservices();
+    app.enableCors();
     await app.listen(process.env.PORT ?? 3000);
     console.log('HTTP server + Kafka ML Consumer running...');
 }
