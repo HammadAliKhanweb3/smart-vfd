@@ -14,8 +14,14 @@ import { AppResolver } from './app.resolver';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
    //   subscriptions: { 'graphql-ws': true },
-        subscriptions: {
-    'subscriptions-transport-ws': true, // ✅ REQUIRED for Playground
+       subscriptions: {
+    'graphql-ws': {
+      path: '/graphql',
+      onConnect: (context: any) => {
+        console.log('🔌 GraphQL-WS Client connected');
+        return true;
+      },
+    },
   },
 
       playground: true,

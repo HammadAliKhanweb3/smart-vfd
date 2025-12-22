@@ -26,7 +26,13 @@ exports.AppModule = AppModule = __decorate([
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
                 sortSchema: true,
                 subscriptions: {
-                    'subscriptions-transport-ws': true,
+                    'graphql-ws': {
+                        path: '/graphql',
+                        onConnect: (context) => {
+                            console.log('🔌 GraphQL-WS Client connected');
+                            return true;
+                        },
+                    },
                 },
                 playground: true,
                 installSubscriptionHandlers: true

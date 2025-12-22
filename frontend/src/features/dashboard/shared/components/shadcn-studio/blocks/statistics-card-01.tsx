@@ -6,10 +6,10 @@ import { cn } from '@/lib/utils'
 
 // Statistics card data type
 type StatisticsCardProps = {
-  icon: ReactNode
-  value: string
-  title: string
-  changePercentage: string
+ icon?: ReactNode
+  value?: string
+  title?: string
+  changePercentage?: string
   className?: string
 }
 

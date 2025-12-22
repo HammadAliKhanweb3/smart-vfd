@@ -2,6 +2,8 @@ import { createRouter } from '@tanstack/react-router'
 import { setupRouterSsrQueryIntegration } from '@tanstack/react-router-ssr-query'
 import * as TanstackQuery from './integrations/tanstack-query/root-provider'
 import { routeTree } from './routeTree.gen'
+import { ApolloProvider } from '@apollo/client/react'
+import { apolloClient } from './lib/apollo-client'
 
 // Import the generated route tree
 
@@ -17,7 +19,9 @@ export const getRouter = () => {
     Wrap: (props: { children: React.ReactNode }) => {
       return (
         <TanstackQuery.Provider {...rqContext}>
-          {props.children}
+          <ApolloProvider client={apolloClient}>
+            {props.children}
+          </ApolloProvider>
         </TanstackQuery.Provider>
       )
     },
