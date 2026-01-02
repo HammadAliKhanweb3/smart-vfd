@@ -11,9 +11,9 @@ import {
 
 import { Bar, BarChart, Label, Pie, PieChart } from 'recharts'
 
-import { Avatar, AvatarFallback } from '@/features/dashboard/shared/components/ui/avatar'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/features/dashboard/shared/components/ui/card'
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/features/dashboard/shared/components/ui/chart'
+import { Avatar, AvatarFallback } from '@/features/shared/components/ui/avatar'
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/features/shared/components/ui/card'
+import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/features/shared/components/ui/chart'
 
 const salesPlanPercentage = 54
 const totalBars = 24

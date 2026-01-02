@@ -1,8 +1,8 @@
 import { Bar, BarChart } from 'recharts'
 
-import { Card, CardContent, CardHeader } from '@/features/dashboard/shared/components/ui/card'
-import { type ChartConfig, ChartContainer } from '@/features/dashboard/shared/components/ui/chart'
-import { Separator } from '@/features/dashboard/shared/components/ui/separator'
+import { Card, CardContent, CardHeader } from '@/features/shared/components/ui/card'
+import { type ChartConfig, ChartContainer } from '@/features/shared/components/ui/chart'
+import { Separator } from '@/features/shared/components/ui/separator'
 
 import { cn } from '@/lib/utils'
 

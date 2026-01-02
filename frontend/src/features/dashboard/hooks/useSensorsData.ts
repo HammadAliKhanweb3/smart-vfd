@@ -24,6 +24,7 @@ subscription{
 
 
 export function useSensorsData(){
+
 const {data,loading,error} = useSubscription<Subscription>(sensorSubscription);
     console.log("inside useSensorData hook:",data,loading,error);
     
