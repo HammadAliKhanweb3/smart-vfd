@@ -1,7 +1,8 @@
-import { DashboardMain } from '@/features/dashboard/components/dashboard-main'
+import { DashboardMain, SensorDataError, SensorDataLoader } from '@/features/dashboard/components/dashboard-main'
 import { useSensorsData } from '@/features/dashboard/hooks/useSensorsData';
 import { createFileRoute } from '@tanstack/react-router'
-
+import { Suspense } from 'react';
+import {ErrorBoundary} from "react-error-boundary"
 
 
 export const Route = createFileRoute('/dashboard/')({
@@ -10,15 +11,25 @@ export const Route = createFileRoute('/dashboard/')({
 
 function RouteComponent() {
     const {data,loading,error}=useSensorsData();
-    if (loading){
-        
-        console.log("log inside dashboard index");
-         return <div>Loading...</div>
-    }
-    if (error){
-        return <div>Error: {error.message}</div>
-    }
+  
     console.log(data);
     
-    return <DashboardMain data={data} loading={loading} error={error}/>
+    return (
+    
+   <div>
+    <Suspense fallback={<SensorDataLoader/>}>
+        <ErrorBoundary fallback={<SensorDataError/>}>
+             <DashboardMain 
+    data={data}
+     loading={loading}
+      error={error}/>
+        </ErrorBoundary>
+
+    </Suspense>
+   
+</div>
+
+
+    )
 }
+

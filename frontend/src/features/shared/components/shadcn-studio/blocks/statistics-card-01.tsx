@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { Card, CardContent, CardHeader } from '@/features/dashboard/shared/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/features/shared/components/ui/card'
 
 import { cn } from '@/lib/utils'
 

@@ -1,11 +1,12 @@
-    import { type Item } from '@/features/dashboard/shared/components/shadcn-studio/blocks/datatable-transaction'
-    import { Card } from '@/features/dashboard/shared/components/ui/card'
+    import { type Item } from '@/features/shared/components/shadcn-studio/blocks/datatable-transaction'
+    import { Card } from '@/features/shared/components/ui/card'
 
-    import SalesMetricsCard from '@/features/dashboard/shared/components/shadcn-studio/blocks/chart-sales-metrics'
-    import TransactionDatatable from '@/features/dashboard/shared/components/shadcn-studio/blocks/datatable-transaction'
-    import StatisticsCard from '@/features/dashboard/shared/components/shadcn-studio/blocks/statistics-card-01'
-    import ProductInsightsCard from '@/features/dashboard/shared/components/shadcn-studio/blocks/widget-product-insights'
-    import TotalEarningCard from '@/features/dashboard/shared/components/shadcn-studio/blocks/widget-total-earning'
+    import SalesMetricsCard from '@/features/shared/components/shadcn-studio/blocks/chart-sales-metrics'
+    import TransactionDatatable from '@/features/shared/components/shadcn-studio/blocks/datatable-transaction'
+    import StatisticsCard from '@/features/shared/components/shadcn-studio/blocks/statistics-card-01'
+    import ProductInsightsCard from '@/features/shared/components/shadcn-studio/blocks/widget-product-insights'
+    import TotalEarningCard from '@/features/shared/components/shadcn-studio/blocks/widget-total-earning'
+    import Loader from '@/features/shared/components/knoctui/loader'
 
     import {
         Activity,
@@ -384,7 +385,7 @@
     
     console.log("inside Dashboard-Main");
     
-    if (loading) {return <div>Loading...</div>}
+    if (loading) {return }
     if (error) {return <div>Error: {error.message}</div>}
     return (
         <div className='grid grid-cols-2 gap-6 lg:grid-cols-3'>
@@ -428,3 +429,14 @@
                 </div>
     )
     }
+
+    export const SensorDataLoader = ()=>{
+    return(
+        <Loader title='Loading Sensor Data' subtitle='This may Take a few seconds...'/>
+    )}
+
+    export const SensorDataError = ()=>{
+    return(
+        <Loader title='No Sensors Data found' subtitle='Something went wrong...'/>
+    )
+}

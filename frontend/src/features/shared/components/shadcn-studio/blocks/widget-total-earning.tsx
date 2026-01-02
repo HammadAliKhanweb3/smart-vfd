@@ -1,16 +1,16 @@
 import { ChevronDownIcon, ChevronUpIcon, EllipsisVerticalIcon } from 'lucide-react'
 
-import { Avatar, AvatarFallback } from '@/features/dashboard/shared/components/ui/avatar'
-import { Button } from '@/features/dashboard/shared/components/ui/button'
-import { Card, CardContent, CardHeader } from '@/features/dashboard/shared/components/ui/card'
+import { Avatar, AvatarFallback } from '@/features/shared/components/ui/avatar'
+import { Button } from '@/features/shared/components/ui/button'
+import { Card, CardContent, CardHeader } from '@/features/shared/components/ui/card'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from '@/features/dashboard/shared/components/ui/dropdown-menu'
-import { Progress } from '@/features/dashboard/shared/components/ui/progress'
+} from '@/features/shared/components/ui/dropdown-menu'
+import { Progress } from '@/features/shared/components/ui/progress'
 
 const listItems = ['Share', 'Update', 'Refresh']
 

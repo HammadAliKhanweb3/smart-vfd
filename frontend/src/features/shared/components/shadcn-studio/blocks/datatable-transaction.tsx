@@ -12,20 +12,20 @@ import {
   useReactTable
 } from '@tanstack/react-table'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/features/dashboard/shared/components/ui/avatar'
-import { Badge } from '@/features/dashboard/shared/components/ui/badge'
-import { Button } from '@/features/dashboard/shared/components/ui/button'
+import { Avatar, AvatarFallback, AvatarImage } from '@/features/shared/components/ui/avatar'
+import { Badge } from '@/features/shared/components/ui/badge'
+import { Button } from '@/features/shared/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from '@/features/dashboard/shared/components/ui/dropdown-menu'
-import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from '@/features/dashboard/shared/components/ui/pagination'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/features/dashboard/shared/components/ui/table'
+} from '@/features/shared/components/ui/dropdown-menu'
+import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem } from '@/features/shared/components/ui/pagination'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/features/shared/components/ui/table'
 
-import { usePagination } from '@/features/dashboard/shared/hooks/use-pagination'
+import { usePagination } from '@/features/shared/hooks/use-pagination'
 
 export type Item = {
   id: string
