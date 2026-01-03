@@ -13,7 +13,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as DashboardSettingsRouteImport } from './routes/dashboard/settings'
-import { Route as DashboardProductsRouteImport } from './routes/dashboard/products'
+import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard/analytics'
 
 const DashboardRoute = DashboardRouteImport.update({
   id: '/dashboard',
@@ -35,22 +35,22 @@ const DashboardSettingsRoute = DashboardSettingsRouteImport.update({
   path: '/settings',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardProductsRoute = DashboardProductsRouteImport.update({
-  id: '/products',
-  path: '/products',
+const DashboardAnalyticsRoute = DashboardAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => DashboardRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteWithChildren
-  '/dashboard/products': typeof DashboardProductsRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboard/products': typeof DashboardProductsRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -58,7 +58,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRouteWithChildren
-  '/dashboard/products': typeof DashboardProductsRoute
+  '/dashboard/analytics': typeof DashboardAnalyticsRoute
   '/dashboard/settings': typeof DashboardSettingsRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
@@ -67,16 +67,16 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
-    | '/dashboard/products'
+    | '/dashboard/analytics'
     | '/dashboard/settings'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard/products' | '/dashboard/settings' | '/dashboard'
+  to: '/' | '/dashboard/analytics' | '/dashboard/settings' | '/dashboard'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
-    | '/dashboard/products'
+    | '/dashboard/analytics'
     | '/dashboard/settings'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
@@ -116,24 +116,24 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardSettingsRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/products': {
-      id: '/dashboard/products'
-      path: '/products'
-      fullPath: '/dashboard/products'
-      preLoaderRoute: typeof DashboardProductsRouteImport
+    '/dashboard/analytics': {
+      id: '/dashboard/analytics'
+      path: '/analytics'
+      fullPath: '/dashboard/analytics'
+      preLoaderRoute: typeof DashboardAnalyticsRouteImport
       parentRoute: typeof DashboardRoute
     }
   }
 }
 
 interface DashboardRouteChildren {
-  DashboardProductsRoute: typeof DashboardProductsRoute
+  DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
   DashboardSettingsRoute: typeof DashboardSettingsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardProductsRoute: DashboardProductsRoute,
+  DashboardAnalyticsRoute: DashboardAnalyticsRoute,
   DashboardSettingsRoute: DashboardSettingsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
