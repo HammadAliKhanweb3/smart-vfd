@@ -4,6 +4,7 @@ import * as TanstackQuery from './integrations/tanstack-query/root-provider'
 import { routeTree } from './routeTree.gen'
 import { ApolloProvider } from '@apollo/client/react'
 import { apolloClient } from './lib/apollo-client'
+import { ThemeProvider } from './components/theme-provider'
 
 // Import the generated route tree
 
@@ -20,7 +21,9 @@ export const getRouter = () => {
       return (
         <TanstackQuery.Provider {...rqContext}>
           <ApolloProvider client={apolloClient}>
-            {props.children}
+            <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+                {props.children}
+            </ThemeProvider>
           </ApolloProvider>
         </TanstackQuery.Provider>
       )

@@ -1,3 +1,4 @@
+import { ModeToggle } from '@/components/mode-toggle'
 import LanguageDropdown from '@/features/shared/components/shadcn-studio/blocks/dropdown-language'
 import ProfileDropdown from '@/features/shared/components/shadcn-studio/blocks/dropdown-profile'
 import { Avatar, AvatarImage } from '@/features/shared/components/ui/avatar'
@@ -57,17 +58,17 @@ export function Layout(){
                                                 <User2 className="size-4" />
                                             </div>
                                             <div className="grid flex-1 text-left text-sm leading-tight">
-                                                <span className="truncate font-semibold">Your App</span>
+                                                <span className="truncate font-semibold">Smart VFD</span>
                                                 <span className="truncate text-xs">Dashboard</span>
                                             </div>
                                         </Link>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             </SidebarMenu>
+                                    <Separator/>
                         </SidebarHeader>
-
                         <SidebarGroup>
-                            <SidebarGroupLabel>General</SidebarGroupLabel>
+                            <SidebarGroupLabel>Real-Time Data</SidebarGroupLabel>
                             <SidebarGroupContent>
                                 <SidebarMenu>
                                     <SidebarMenuItem>
@@ -82,15 +83,16 @@ export function Layout(){
                                         <SidebarMenuButton asChild>
                                             <Link to='/dashboard/products'>
                                                 <Package />
-                                                <span>Products</span>
+                                                <span>Analytics</span>
                                             </Link>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
+                                    <Separator/>
                                     <SidebarMenuItem>
                                         <SidebarMenuButton asChild>
                                             <Link to='/dashboard/settings'>
                                                 <Settings />
-                                                <span>Settings</span>
+                                                <span>Upgrade</span>
                                             </Link>
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
@@ -104,7 +106,7 @@ export function Layout(){
                         <div className='mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6'>
                             <div className='flex items-center gap-4'>
                                 <SidebarTrigger className='[&_svg]:h-5 [&_svg]:w-5' />
-                                <Separator orientation='vertical' className='hidden h-4 sm:block' />
+                               <Separator orientation='vertical' className='hidden h-4 sm:block' />
                                 <Breadcrumb className='hidden sm:block'>
                                     <BreadcrumbList>
                                         <BreadcrumbItem>
@@ -137,13 +139,7 @@ export function Layout(){
                                 </Breadcrumb>
                             </div>
                             <div className='flex items-center gap-1.5'>
-                                <LanguageDropdown
-                                    trigger={
-                                        <Button variant='ghost' size='icon'>
-                                            <LanguagesIcon />
-                                        </Button>
-                                    }
-                                />
+                            <ModeToggle/>
                                 <ProfileDropdown
                                     trigger={
                                         <Button variant='ghost' size='icon' className='h-10 w-10'>
