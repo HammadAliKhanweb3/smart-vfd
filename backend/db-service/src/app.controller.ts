@@ -6,15 +6,18 @@ import { Ctx, EventPattern, KafkaContext, Payload } from '@nestjs/microservices'
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
+  
 
   @EventPattern('input.voltage')
   readMessage(@Payload() message: any, @Ctx() context: KafkaContext) {
     const originalMessage = context.getMessage();
     Logger.log("Recieved at kafka broker",originalMessage.value)
+    this.appService.recordSensorData(message.deviceId, message.data);
+  }
+
+  @Get()
+  getHello(deviceId:string,metricName:string,range:string): any {
+    return this.appService.getHistoricalMetric(deviceId,metricName,range)
   }
   
 }
