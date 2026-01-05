@@ -21,21 +21,16 @@ let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
-    getHello() {
-        return this.appService.getHello();
-    }
     readMessage(message, context) {
         const originalMessage = context.getMessage();
         common_1.Logger.log("Recieved at kafka broker", originalMessage.value);
+        this.appService.recordSensorData(message.deviceId, message.data);
+    }
+    getHello(deviceId, metricName, range) {
+        return this.appService.getHistoricalMetric(deviceId, metricName, range);
     }
 };
 exports.AppController = AppController;
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppController.prototype, "getHello", null);
 __decorate([
     (0, microservices_1.EventPattern)('input.voltage'),
     __param(0, (0, microservices_1.Payload)()),
@@ -44,6 +39,12 @@ __decorate([
     __metadata("design:paramtypes", [Object, microservices_1.KafkaContext]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "readMessage", null);
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Object)
+], AppController.prototype, "getHello", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
