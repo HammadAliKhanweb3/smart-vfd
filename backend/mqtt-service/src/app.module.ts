@@ -13,7 +13,7 @@ import { AppController } from "./app.controller";
         options: {
           client: {
             clientId: "mqtt",
-            brokers: ['localhost:9092']
+            brokers: ['kafka:9092']
           },
           producer: {
             allowAutoTopicCreation: true

@@ -13,7 +13,7 @@ RUN pnpm build
 
 FROM node:20-alpine AS runner
 
-WORKDIR /app 
+WORKDIR /app  
 
 RUN corepack enable
 
@@ -22,7 +22,7 @@ RUN pnpm install --prod --frozen-lockfile
 
 COPY --from=builder /app/dist ./dist
 
-EXPOSE 1883
+EXPOSE 4000
 
 ENV NODE_ENV=production
 

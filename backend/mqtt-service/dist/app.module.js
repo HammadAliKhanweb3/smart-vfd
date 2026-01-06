@@ -23,7 +23,7 @@ exports.AppModule = AppModule = __decorate([
                     options: {
                         client: {
                             clientId: "mqtt",
-                            brokers: ['localhost:9092']
+                            brokers: ['kafka:9092']
                         },
                         producer: {
                             allowAutoTopicCreation: true

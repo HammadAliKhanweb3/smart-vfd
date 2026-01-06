@@ -12,7 +12,7 @@ async function bootstrap() {
       options: {
         client: {
           clientId:"api-gateway",
-          brokers: ['localhost:9092'],
+          brokers: [process.env.KAFKA_BROKER || 'localhost:9092'],
         },
         consumer: { groupId: 'api-gateway-consumer' },  
       },

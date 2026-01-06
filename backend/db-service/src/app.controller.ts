@@ -15,7 +15,7 @@ export class AppController {
     this.appService.recordSensorData(message.deviceId, message.data);
   }
 
-  @Get()
+  @Get("sensorsData")
   getHello(deviceId:string,metricName:string,range:string): any {
     return this.appService.getHistoricalMetric(deviceId,metricName,range)
   }
