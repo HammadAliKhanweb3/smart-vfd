@@ -10,7 +10,7 @@ const app = await NestFactory.createMicroservice<MicroserviceOptions>(AppModule,
      {
        transport: Transport.MQTT,
        options: {
-         url: "mqtt://localhost:1883"
+         url: process.env.MQTT_URL || 'mqtt://mosquitto:1883',
        }
      }
    );
