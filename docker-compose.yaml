@@ -36,7 +36,7 @@ services:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=sensor_user
       - DOCKER_INFLUXDB_INIT_PASSWORD=sensor_pass123
-      - DOCKER_INFLUXDB_INIT_ORG=smart-grid
+      - DOCKER_INFLUXDB_INIT_ORG=smart-vfd
       - DOCKER_INFLUXDB_INIT_BUCKET=sensors_bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-token
     volumes:
@@ -68,13 +68,13 @@ services:
     build: ./backend/db-service
     container_name: db_service
     restart: always
-    volumes:
-      - ./backend/db-service:/app
-      - /app/node_modules
+    # volumes:
+    #   - ./backend/db-service:/app
+    #   - /app/node_modules
     environment:
       - INFLUX_URL=http://influxdb:8086
       - INFLUX_TOKEN=my-super-secret-token
-      - INFLUX_ORG=smart-grid
+      - INFLUX_ORG=smart-vfd
       - INFLUX_BUCKET=sensors_bucket
       - KAFKA_BROKER=kafka:9092
     depends_on:
