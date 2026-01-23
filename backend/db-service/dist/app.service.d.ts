@@ -4,6 +4,6 @@ export declare class AppService implements OnModuleInit {
     private writeApi;
     private queryApi;
     onModuleInit(): void;
-    recordSensorData(deviceId: string, data: any): Promise<void>;
+    recordSensorData(data: any): Promise<void>;
     getHistoricalMetric(deviceId: string, metricName: string, range?: string): Promise<any>;
 }

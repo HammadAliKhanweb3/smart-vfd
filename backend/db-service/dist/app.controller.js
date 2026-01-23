@@ -24,7 +24,7 @@ let AppController = class AppController {
     readMessage(message, context) {
         const originalMessage = context.getMessage();
         common_1.Logger.log("Recieved at kafka broker", originalMessage.value);
-        this.appService.recordSensorData(message.deviceId, message.data);
+        this.appService.recordSensorData(message.data);
     }
     getHello(deviceId, metricName, range) {
         return this.appService.getHistoricalMetric(deviceId, metricName, range);
@@ -40,7 +40,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "readMessage", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)("sensorsData"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String, String]),
     __metadata("design:returntype", Object)

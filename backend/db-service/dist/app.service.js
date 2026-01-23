@@ -21,7 +21,8 @@ let AppService = class AppService {
         this.writeApi = this.client.getWriteApi('my-org', 'sensor-bucket');
         this.queryApi = this.client.getQueryApi('my-org');
     }
-    async recordSensorData(deviceId, data) {
+    async recordSensorData(data) {
+        const deviceId = "vfd";
         const point = new influxdb_client_1.Point('motor_telemetry')
             .tag('device', deviceId)
             .floatField('currentP1', data.currentP1)
