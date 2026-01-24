@@ -11,9 +11,9 @@ COPY . .
 
 RUN pnpm build
 
+    
 
-
-FROM node:20-alpine 
+FROM node:20-alpine AS runner
 
 WORKDIR /app
 
