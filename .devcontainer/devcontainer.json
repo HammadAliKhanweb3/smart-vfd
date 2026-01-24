@@ -1,0 +1,26 @@
+{
+  "name": "Smart VFD Environment",
+  "dockerComposeFile": [
+    "../docker-compose.yml",       // Load Infra (Kafka, Influx)
+    "./docker-compose.dev.yml"     // Load Dev Workstation
+  ],
+  "service": "dev-runner",         // Connect VS Code to the Workstation
+  "workspaceFolder": "/workspace",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "humao.rest-client"
+      ]
+    }
+  },
+
+  // Forward ports so you can see them on localhost
+  "forwardPorts": [3000, 8086, 9092, 1883, 1884, 29092],
+
+  // Run as 'node' user to avoid permission issues
+  "remoteUser": "node"
+}

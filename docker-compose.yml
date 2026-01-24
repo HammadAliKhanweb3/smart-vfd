@@ -1,9 +1,15 @@
+version: '3.8'
+
 services:
+  # --- INFRASTRUCTURE SERVICES ---
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
     container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
+    volumes:
+      - zookeeper_data:/var/lib/zookeeper/data
+      - zookeeper_log:/var/lib/zookeeper/log
 
   kafka:
     image: confluentinc/cp-kafka:7.5.0
@@ -21,6 +27,8 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
     healthcheck:
       test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
       interval: 10s
@@ -41,17 +49,19 @@ services:
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-token
     volumes:
       - influxdb_data:/var/lib/influxdb2
+
   mosquitto:
     image: eclipse-mosquitto:2.0
     container_name: mosquitto
     ports:
       - "1883:1883"
     volumes:
-      # Use ./ to ensure it looks in the current folder
       - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
     restart: always
 
+  
   mqtt_service:
+    profiles: ["prod"]   
     build: ./backend/mqtt-service
     container_name: mqtt_service
     restart: always
@@ -65,12 +75,10 @@ services:
         condition: service_healthy
 
   db-service:
+    profiles: ["prod"]   
     build: ./backend/db-service
     container_name: db_service
     restart: always
-    # volumes:
-    #   - ./backend/db-service:/app
-    #   - /app/node_modules
     environment:
       - INFLUX_URL=http://influxdb:8086
       - INFLUX_TOKEN=my-super-secret-token
@@ -84,6 +92,7 @@ services:
         condition: service_healthy
 
   api-gateway:
+    profiles: ["prod"]   
     build: ./backend/api-gateway
     container_name: api_gateway
     ports:
@@ -96,5 +105,9 @@ services:
       kafka:
         condition: service_healthy
 
+# --- PERSISTENT STORAGE ---
 volumes:
   influxdb_data:
+  kafka_data:
+  zookeeper_data:
+  zookeeper_log:

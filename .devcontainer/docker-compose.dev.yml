@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  dev-runner:
+    image: mcr.microsoft.com/devcontainers/javascript-node:18-bullseye
+
+    volumes:
+      - .:/workspace:cached
+  
+    command: sleep infinity
+    
+    environment:
+    - NODE_ENV=development
+    - KAFKA_BROKER=kafka:9092D
+    - INFLUX_URL=http://influxdb:8086
+    - INFLUX_TOKEN=my-super-secret-token
+    - MQTT_URL=mqtt://mosquitto:1883
