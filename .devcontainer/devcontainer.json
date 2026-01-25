@@ -5,7 +5,9 @@
     "./docker-compose.dev.yml"     // Load Dev Workstation
   ],
   "service": "dev-runner",         // Connect VS Code to the Workstation
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspace",  
+
+  "shutdownAction": "stopCompose",
 
   "customizations": {
     "vscode": {
@@ -18,9 +20,11 @@
     }
   },
 
-  // Forward ports so you can see them on localhost
-  "forwardPorts": [3000, 8086, 9092, 1883, 1884, 29092],
+  "postCreateCommand": "sudo corepack enable && cd backend/ai-service && pnpm install && cd ../api-gateway && pnpm install && cd ../db-service && pnpm install && cd ../mqtt-service && pnpm install",
 
-  // Run as 'node' user to avoid permission issues
+  // Forward ports so you can see them on localh
+  "forwardPorts": [3000, 8086, 9092, 1883, 1884, 4000],
+
+  // Run as 'node' user to avoid permission issuescl
   "remoteUser": "node"
 }
