@@ -8,27 +8,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppResolver = void 0;
 const common_1 = require("@nestjs/common");
 const graphql_1 = require("@nestjs/graphql");
+const app_service_1 = require("./app.service");
+const historical_data_model_1 = require("./models/historical-data.model");
 let AppResolver = class AppResolver {
-    constructor() {
-        common_1.Logger.log("✅GraphQL Resolver initialized");
+    appService;
+    constructor(appService) {
+        this.appService = appService;
     }
-    hello() {
-        return "Hello GraphQL from db";
+    async historicalData(deviceId, metricName, range) {
+        const result = await this.appService.getHistoricalMetric(deviceId, metricName, range);
+        common_1.Logger.log("GraphQL Query Result:", result);
+        return result.map((row) => ({
+            time: row._time,
+            value: row._value
+        }));
     }
 };
 exports.AppResolver = AppResolver;
 __decorate([
-    (0, graphql_1.Query)(() => String),
+    (0, graphql_1.Query)(() => [historical_data_model_1.HistoricalData], { name: "historicalData" }),
+    __param(0, (0, graphql_1.Args)('deviceId')),
+    __param(1, (0, graphql_1.Args)("metricName")),
+    __param(2, (0, graphql_1.Args)("range")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppResolver.prototype, "hello", null);
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], AppResolver.prototype, "historicalData", null);
 exports.AppResolver = AppResolver = __decorate([
     (0, graphql_1.Resolver)(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [app_service_1.AppService])
 ], AppResolver);
 //# sourceMappingURL=app.resolver.js.map

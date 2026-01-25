@@ -7,7 +7,7 @@ import { Logger } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
-   await app.connectMicroservice<MicroserviceOptions>(
+    app.connectMicroservice<MicroserviceOptions>(
     {
       transport: Transport.KAFKA,
       options: {
@@ -22,6 +22,6 @@ async function bootstrap() {
   await app.startAllMicroservices()
   Logger.log("DB Service Microservice is listening to Kafka messages...")
   await app.listen(4000);
-  Logger.log('DB Service + Kafka Consumer running...');
+  Logger.log('DB Service + Kafka Consumer running ✅');
 }
 bootstrap();

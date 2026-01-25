@@ -13,6 +13,7 @@ exports.AppResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const pubSub_1 = require("./pubSub");
 const sensor_data_model_1 = require("./sensor-data.model");
+const common_1 = require("@nestjs/common");
 let AppResolver = class AppResolver {
     constructor() {
         console.log('✅ AppResolver LOADED');
@@ -21,7 +22,7 @@ let AppResolver = class AppResolver {
         return "Hello World!";
     }
     inputVoltage() {
-        console.log("recieved in subsc");
+        common_1.Logger.log("Subscription to inputVoltage called");
         return pubSub_1.pubSub.asyncIterableIterator('inputVoltage');
     }
 };

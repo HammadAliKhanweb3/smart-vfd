@@ -16,15 +16,17 @@ exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const microservices_1 = require("@nestjs/microservices");
+const sensor_data_model_1 = require("./models/sensor-data.model");
 let AppController = class AppController {
     appService;
     constructor(appService) {
         this.appService = appService;
     }
-    readMessage(message, context) {
+    async readMessage(message, context) {
         const originalMessage = context.getMessage();
-        common_1.Logger.log("Recieved at kafka broker", originalMessage.value);
-        this.appService.recordSensorData(message.data);
+        common_1.Logger.log("Recieved at kafka broker", typeof originalMessage.value);
+        common_1.Logger.log("Recieved at kafka broker 2:", message);
+        await this.appService.recordSensorData(message);
     }
     getHello(deviceId, metricName, range) {
         return this.appService.getHistoricalMetric(deviceId, metricName, range);
@@ -36,8 +38,8 @@ __decorate([
     __param(0, (0, microservices_1.Payload)()),
     __param(1, (0, microservices_1.Ctx)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, microservices_1.KafkaContext]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [sensor_data_model_1.SensorData, microservices_1.KafkaContext]),
+    __metadata("design:returntype", Promise)
 ], AppController.prototype, "readMessage", null);
 __decorate([
     (0, common_1.Get)("sensorsData"),
