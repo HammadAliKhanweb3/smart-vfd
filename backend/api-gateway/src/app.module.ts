@@ -22,10 +22,15 @@ import { AppResolver } from './app.resolver';
         return true;
       },
     },
+
+    'subscriptions-transport-ws': {
+      path:"/graphql",
+      onConnect: () => {
+        console.log('🔌 Subscriptions-Transport-WS Client connected');
+      },
+    },
   },
 
-      playground: true,
-        installSubscriptionHandlers: true
     }),
   ],
   controllers: [AppController],

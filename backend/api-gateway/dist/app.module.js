@@ -33,9 +33,13 @@ exports.AppModule = AppModule = __decorate([
                             return true;
                         },
                     },
+                    'subscriptions-transport-ws': {
+                        path: "/graphql",
+                        onConnect: () => {
+                            console.log('🔌 Subscriptions-Transport-WS Client connected');
+                        },
+                    },
                 },
-                playground: true,
-                installSubscriptionHandlers: true
             }),
         ],
         controllers: [app_controller_1.AppController],

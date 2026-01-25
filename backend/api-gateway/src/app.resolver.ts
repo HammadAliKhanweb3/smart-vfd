@@ -1,20 +1,27 @@
-import { Resolver, Query, Subscription, Float } from '@nestjs/graphql';
+import { Resolver, Query, Subscription, } from '@nestjs/graphql';
 import { pubSub } from "./pubSub" 
 import { SensorData } from './sensor-data.model';
+import { Logger } from '@nestjs/common';
+import { AppService } from './app.service';
+import { Anayltics } from './models/analytics.model';
+
+
+
 
 @Resolver()
 export class AppResolver {
-  constructor() {
-        console.log('✅ AppResolver LOADED');
-  }
-  @Query(()=>String)
-  hello(): string {
-    return "Hello World!"
+  constructor(private readonly appservice: AppService) {}
+  @Query(()=>[Anayltics], {name:"getAnalyticsData"})
+  getAnalyticsData(): Promise<Anayltics[]> {
+    return [
+      { time: "2023-01-01T00:00:00Z", value: 123 },
+      { time: "2023-01-01T01:00:00Z", value: 456 }
+    ];  
   }
 
   @Subscription(()=>SensorData)
   inputVoltage() {
-    console.log("recieved in subsc");
+    Logger.log("Subscription to inputVoltage called");
     return pubSub.asyncIterableIterator('inputVoltage')
   }
 }

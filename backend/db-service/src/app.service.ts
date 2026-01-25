@@ -1,18 +1,19 @@
   import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
   import { InfluxDB, Point } from '@influxdata/influxdb-client';
-  import { randomUUID } from 'crypto';
   import { SensorData } from './models/sensor-data.model';
+  import { WriteApi } from '@influxdata/influxdb-client';
+  import { QueryApi } from '@influxdata/influxdb-client';
 
   @Injectable()
   export class AppService implements OnModuleInit {
     private client: InfluxDB;
-    private writeApi: any;
-    private queryApi: any;
+    private writeApi: WriteApi;
+    private queryApi: QueryApi;
 
     onModuleInit() {
       this.client = new InfluxDB({ 
         url: 'http://influxdb:8086', 
-        token: 'my-super-secret-token' 
+        token: "my-super-secret-token"
       });
       this.writeApi = this.client.getWriteApi('smart-vfd', 'sensors_bucket');
       this.queryApi = this.client.getQueryApi('smart-vfd');
@@ -47,13 +48,13 @@
 
     // 2. RETRIEVE A SPECIFIC METRIC (e.g., motorSpeed)
     async getHistoricalMetric(deviceId: string, metricName: string, range: string = '-1h') {
-      const fluxQuery = `
-        from(bucket: "sensor-bucket")
+      const fluxQuery =`
+        from(bucket: "sensors_bucket")
           |> range(start: ${range})
-          |> filter(fn: (r) => r._measurement == "motor_telemetry" and r.sensor_id == "${deviceId}")
+          |> filter(fn: (r) =>  r.device == "${deviceId}")
           |> filter(fn: (r) => r._field == "${metricName}")
           |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
       `;
-      return this.queryApi.collectRows(fluxQuery);
+      return await this.queryApi.collectRows(fluxQuery);
     }
   }
