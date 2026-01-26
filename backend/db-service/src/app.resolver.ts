@@ -14,7 +14,7 @@ export class AppResolver {
         
     }
     @Query(()=>[HistoricalData],{name:"historicalData"})
-
+    
     async historicalData(@Args('deviceId') deviceId: string,@Args("metricName")metricName: string,@Args("range")range: string):Promise<HistoricalData[]>{ 
      const result = await this.appService.getHistoricalMetric(deviceId,metricName,range) as InfluxRow[]
         Logger.log("GraphQL Query Result:",result)
