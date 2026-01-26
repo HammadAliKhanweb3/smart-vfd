@@ -1,3 +1,7 @@
+import { AnalyticsDataInterface, AnalyticsService } from './anaytics/analytics.service';
+import { Anayltics } from './common/models/analytics.model';
 export declare class AppService {
-    constructor();
+    private readonly analyticsService;
+    constructor(analyticsService: AnalyticsService);
+    getAnalyticsData({ deviceId, metricName, range }: AnalyticsDataInterface): Promise<Anayltics[]>;
 }

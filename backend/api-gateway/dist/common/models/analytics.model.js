@@ -9,21 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
-const common_1 = require("@nestjs/common");
-const analytics_service_1 = require("./anaytics/analytics.service");
-let AppService = class AppService {
-    analyticsService;
-    constructor(analyticsService) {
-        this.analyticsService = analyticsService;
-    }
-    async getAnalyticsData({ deviceId, metricName, range }) {
-        return await this.analyticsService.getAnalyticsData({ deviceId, metricName, range });
-    }
+exports.Anayltics = void 0;
+const graphql_1 = require("@nestjs/graphql");
+let Anayltics = class Anayltics {
+    time;
+    value;
 };
-exports.AppService = AppService;
-exports.AppService = AppService = __decorate([
-    (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [analytics_service_1.AnalyticsService])
-], AppService);
-//# sourceMappingURL=app.service.js.map
+exports.Anayltics = Anayltics;
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", String)
+], Anayltics.prototype, "time", void 0);
+__decorate([
+    (0, graphql_1.Field)(),
+    __metadata("design:type", Number)
+], Anayltics.prototype, "value", void 0);
+exports.Anayltics = Anayltics = __decorate([
+    (0, graphql_1.ObjectType)()
+], Anayltics);
+//# sourceMappingURL=analytics.model.js.map

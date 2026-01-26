@@ -2,8 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Anayltics {
+  time: String!
+  value: Float!
+}
+
 type Query {
-  hello: String!
+  getAnalyticsData(deviceId: String!, metricName: String!, range: String!): [Anayltics!]!
 }
 
 type SensorData {

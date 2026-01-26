@@ -15,6 +15,9 @@ const core_1 = require("@nestjs/core");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const app_resolver_1 = require("./app.resolver");
+const config_1 = require("@nestjs/config");
+const analytics_module_1 = require("./anaytics/analytics.module");
+const analytics_service_1 = require("./anaytics/analytics.service");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -41,11 +44,13 @@ exports.AppModule = AppModule = __decorate([
                     },
                 },
             }),
+            config_1.ConfigModule.forRoot({ isGlobal: true }),
+            analytics_module_1.AnalyticsModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [
             { provide: core_1.APP_PIPE, useClass: common_1.ValidationPipe },
-            app_resolver_1.AppResolver, app_service_1.AppService
+            app_resolver_1.AppResolver, app_service_1.AppService, analytics_service_1.AnalyticsService
         ],
     })
 ], AppModule);

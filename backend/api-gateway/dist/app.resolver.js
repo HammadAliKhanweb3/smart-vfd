@@ -8,18 +8,24 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const pubSub_1 = require("./pubSub");
 const sensor_data_model_1 = require("./sensor-data.model");
 const common_1 = require("@nestjs/common");
+const app_service_1 = require("./app.service");
+const analytics_model_1 = require("./common/models/analytics.model");
 let AppResolver = class AppResolver {
-    constructor() {
-        console.log('✅ AppResolver LOADED');
+    appservice;
+    constructor(appservice) {
+        this.appservice = appservice;
     }
-    hello() {
-        return "Hello World!";
+    async getAnalyticsData(deviceId, metricName, range) {
+        return await this.appservice.getAnalyticsData({ deviceId, metricName, range });
     }
     inputVoltage() {
         common_1.Logger.log("Subscription to inputVoltage called");
@@ -28,11 +34,14 @@ let AppResolver = class AppResolver {
 };
 exports.AppResolver = AppResolver;
 __decorate([
-    (0, graphql_1.Query)(() => String),
+    (0, graphql_1.Query)(() => [analytics_model_1.Anayltics], { name: "getAnalyticsData" }),
+    __param(0, (0, graphql_1.Args)("deviceId")),
+    __param(1, (0, graphql_1.Args)("metricName")),
+    __param(2, (0, graphql_1.Args)("range")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppResolver.prototype, "hello", null);
+    __metadata("design:paramtypes", [String, String, String]),
+    __metadata("design:returntype", Promise)
+], AppResolver.prototype, "getAnalyticsData", null);
 __decorate([
     (0, graphql_1.Subscription)(() => sensor_data_model_1.SensorData),
     __metadata("design:type", Function),
@@ -41,6 +50,6 @@ __decorate([
 ], AppResolver.prototype, "inputVoltage", null);
 exports.AppResolver = AppResolver = __decorate([
     (0, graphql_1.Resolver)(),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [app_service_1.AppService])
 ], AppResolver);
 //# sourceMappingURL=app.resolver.js.map
