@@ -26,7 +26,7 @@ Smart-VFD is a comprehensive IoT monitoring solution Integrated with AI designed
 - **Distributed Architecture**: Loosely coupled microservices for scalability and resilience
 - **Time-Series Storage**: InfluxDB integration for efficient sensor data persistence
 - **GraphQL API**: Modern, type-safe API with real-time subscriptions
-- **Responsive Dashboard**: React-based frontend with TanStack ecosystem
+- **Responsive Dashboard**: React-based frontend with TanStack Start ecosystem
 - **Container-Ready**: Full Docker Compose setup for development and production
 - **Industrial Metrics**: Comprehensive VFD sensor monitoring including voltage, current, temperature, and vibration
 
