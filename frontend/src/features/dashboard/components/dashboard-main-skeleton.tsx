@@ -1,5 +1,5 @@
+import Skeleton from 'react-loading-skeleton'
    import { Card } from '@/features/shared/components/ui/card'
-    import Skeleton from 'react-loading-skeleton'
  
  
  export function StatisticsCardsSkeleton() {

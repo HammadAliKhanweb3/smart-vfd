@@ -21,7 +21,7 @@ export const getRouter = () => {
       return (
         <TanstackQuery.Provider {...rqContext}>
           <ApolloProvider client={apolloClient}>
-            <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+            <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
                 {props.children}
             </ThemeProvider>
           </ApolloProvider>
