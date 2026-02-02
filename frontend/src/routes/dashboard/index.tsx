@@ -1,7 +1,7 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { DashboardMain } from '@/features/dashboard/components/dashboard-main'
 import { useSensorsData } from '@/features/dashboard/hooks/useSensorsData';
 import ErrorState from '@/features/shared/components/ErrorState';
-import { createFileRoute } from '@tanstack/react-router'
 
 
 

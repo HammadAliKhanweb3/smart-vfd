@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite dev --port 3000",
+    "dev": "vite --host 0.0.0.0 --port 3000",
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
@@ -47,6 +47,7 @@
     "tailwind-merge": "^3.0.2",
     "tailwindcss": "^4.0.6",
     "tw-animate-css": "^1.3.6",
+    "vite-plugin-nitro": "^0.0.0",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "devDependencies": {
