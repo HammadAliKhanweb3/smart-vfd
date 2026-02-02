@@ -2,7 +2,7 @@
 
   services:
     dev-runner:
-      image: mcr.microsoft.com/devcontainers/javascript-node:18-bullseye
+      image: mcr.microsoft.com/devcontainers/javascript-node:22-bullseye
 
       volumes:
         - .:/workspace:cached
