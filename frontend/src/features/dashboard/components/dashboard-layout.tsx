@@ -1,7 +1,18 @@
-import { ModeToggle } from '@/components/mode-toggle'
-import LanguageDropdown from '@/features/shared/components/shadcn-studio/blocks/dropdown-language'
-import ProfileDropdown from '@/features/shared/components/shadcn-studio/blocks/dropdown-profile'
-import { Avatar, AvatarImage } from '@/features/shared/components/ui/avatar'
+
+import {  Link, Outlet, useLocation } from '@tanstack/react-router'
+import {
+    FacebookIcon,
+    InstagramIcon,
+    LayoutDashboard,
+    LinkedinIcon,
+    Package,
+    Settings,
+    TwitterIcon,
+    User2
+} from 'lucide-react'
+import { Fragment } from 'react/jsx-runtime'
+import ProfileDropdown from '@/components/shadcn-studio/blocks/dropdown-profile'
+import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -9,9 +20,9 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator
-} from '@/features/shared/components/ui/breadcrumb'
-import { Button } from '@/features/shared/components/ui/button'
-import { Separator } from '@/features/shared/components/ui/separator'
+} from '@/components/ui/breadcrumb'
+import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import {
     Sidebar,
     SidebarContent,
@@ -24,21 +35,9 @@ import {
     SidebarMenuItem,
     SidebarProvider,
     SidebarTrigger
-} from '@/features/shared/components/ui/sidebar'
-import {  Link, Outlet, useLocation } from '@tanstack/react-router'
-import {
-    FacebookIcon,
-    InstagramIcon,
-    LanguagesIcon,
-    LayoutDashboard,
-    LinkedinIcon,
-    LogIn,
-    Package,
-    Settings,
-    TwitterIcon,
-    User2
-} from 'lucide-react'
-import { Fragment } from 'react/jsx-runtime'
+} from '@/components/ui/sidebar'
+import { ModeToggle } from '@/components/mode-toggle'
+
 
 
 export function Layout(){
@@ -81,7 +80,7 @@ export function Layout(){
                                     </SidebarMenuItem>
                                     <SidebarMenuItem>
                                         <SidebarMenuButton asChild>
-                                            <Link to='/dashboard/products'>
+                                            <Link to='/dashboard/analytics'>
                                                 <Package />
                                                 <span>Analytics</span>
                                             </Link>

@@ -1,10 +1,10 @@
-import { Subscription } from '@/graphql/graphql';
 import { gql } from '@apollo/client';
 import { useSubscription } from '@apollo/client/react';
+import type { Subscription } from '@/graphql/graphql';
 
 
 const sensorSubscription=gql`
-subscription{
+subscription InputVoltage{
     inputVoltage{
     currentP1
   currentP2
