@@ -1,6 +1,6 @@
-import  { StatisticsCardsSkeleton } from './dashboard-main-skeleton';
+import  { RealTimeDataCardsSkeleton } from './skeleton';
 import type {  Subscription } from '@/graphql/graphql'
-import StatisticsCard from '@/features/shared/components/shadcn-studio/blocks/statistics-card-01';
+import StatisticsCard from '@/components/shadcn-studio/blocks/statistics-card-01';
 
 
 
@@ -18,7 +18,7 @@ import StatisticsCard from '@/features/shared/components/shadcn-studio/blocks/st
   
 
     if (loading) {
-       return( <StatisticsCardsSkeleton/>)
+       return( <RealTimeDataCardsSkeleton/>)
      }
       
     return (
